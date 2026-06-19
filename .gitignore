@@ -1,0 +1,11 @@
+scripts/
+.logs/
+backups/
+data/
+.env
+*.tgz
+*.tar.gz
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
