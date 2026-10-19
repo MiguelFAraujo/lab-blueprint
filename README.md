@@ -429,28 +429,12 @@ find $BACKUP_DIR -name "*.tgz" -mtime +7 -delete
 ### setup.sh
 
 ```bash
-#!/bin/bash
-set -euo pipefail
-echo "🚀 Iniciando setup do Laboratório..."
-
-# 1. Atualizar sistema
-sudo apt update && sudo apt upgrade -y
-
-# 2. Instalar Docker
-curl -fsSL https://get.docker.com | sh
-sudo usermod -aG docker $USER
-
-# 3. Instalar Tailscale
-curl -fsSL https://tailscale.com/install.sh | sh
-
-# 4. Instalar ferramentas
-sudo apt install -y git curl wget htop tmux nfs-common
-
-# 5. Criar diretórios
-mkdir -p /home/$USER/{scripts,logs,backups}
-
-echo "✅ Setup concluído! Reinicie o shell com: exec \$SHELL -l"
+git clone https://github.com/MiguelFAraujo/lab-blueprint.git
+cd lab-blueprint
+./setup.sh
 ```
+
+O `setup.sh` e a fonte unica do setup (6 passos: sistema, Docker, Tailscale, ferramentas, diretorios, compose base). Este README nao embute copia do script para nao divergir dele.
 
 ---
 
