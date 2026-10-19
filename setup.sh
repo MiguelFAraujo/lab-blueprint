@@ -32,6 +32,7 @@ echo "[6/6] Criando docker-compose base..."
 if [ ! -f "docker-compose.yml" ]; then
   cat > docker-compose.yml << 'DOCKERCOMPOSE'
 version: "3.9"
+
 services:
   portainer:
     image: portainer/portainer-ce:latest
@@ -41,6 +42,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    restart: unless-stopped
+    command: --schedule "0 3 * * 0" --cleanup
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   portainer_data:
